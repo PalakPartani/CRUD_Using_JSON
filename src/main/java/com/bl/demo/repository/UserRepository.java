@@ -18,7 +18,6 @@ public class UserRepository {
         ObjectMapper mapper = new ObjectMapper();
         try {
             InputStream inputStream = new FileInputStream(new File("./src/main/resources/UserDetails.json"));
-            // TypeReference<HashMap<Integer,User>> typeReference = new TypeReference<HashMap<Integer,User>>() {
             TypeReference<List<User>> typeReference = new TypeReference<List<User>>() {
 
             };
@@ -44,5 +43,30 @@ public class UserRepository {
         ObjectMapper objectMapper=new ObjectMapper();
         objectMapper.writeValue(new File("./src/main/resources/UserDetails.json"),user);
         return user;
+    }
+
+    public User getUSer(int id) {
+        for (User users : userList) {
+            if (users.getId() == id) {
+                System.out.println("User id" + users.getId());
+                return users;
+            }
+        }
+        return null;
+    }
+     public void updateUser(Integer id,User user) throws IOException {
+        User user1 = getUSer(id);
+        userList.remove(user1);
+        System.out.println(user1.getFirstName());
+        System.out.println("user deleted");
+
+        user.setId(id);
+        user.setFirstName(user.getFirstName());
+        user.setLastName(user.getLastName());
+        System.out.println(user1.getFirstName());
+        System.out.println(user1.getId());
+
+        saveUser(user);
+
     }
 }

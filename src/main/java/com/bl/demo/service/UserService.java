@@ -21,4 +21,7 @@ public class UserService {
     public User add(User user) throws IOException {
         return userRepository.saveUser(user);
     }
+    public void update(Integer id,User user) throws IOException {
+        userRepository.updateUser(id,user);
+    }
 }
