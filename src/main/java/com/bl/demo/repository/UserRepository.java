@@ -38,4 +38,11 @@ public class UserRepository {
         return userList;
         //  return (List<User>) usersMap.values();
     }
+
+    public User saveUser(User user) throws IOException {
+        userList.add(user);
+        ObjectMapper objectMapper=new ObjectMapper();
+        objectMapper.writeValue(new File("./src/main/resources/UserDetails.json"),user);
+        return user;
+    }
 }
