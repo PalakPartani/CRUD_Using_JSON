@@ -1,7 +1,7 @@
 package com.bl.demo.service;
 
-import com.bl.demo.dao.UserDAO;
 import com.bl.demo.model.User;
+import com.bl.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserDAO userDao;
+    private UserRepository userRepository;
 
     public List<User> getAllUsers() {
-        List<User> userList = userDao.getAllUsers();
+        List<User> userList = userRepository.getAllUsers();
         return userList;
     }
 
