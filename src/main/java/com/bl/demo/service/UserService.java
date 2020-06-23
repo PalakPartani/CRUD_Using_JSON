@@ -24,4 +24,7 @@ public class UserService {
     public void update(Integer id,User user) throws IOException {
         userRepository.updateUser(id,user);
     }
+    public void delete(int id) throws IOException {
+        userRepository.deleteUserr(id);
+    }
 }

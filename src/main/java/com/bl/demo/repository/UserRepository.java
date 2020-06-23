@@ -13,15 +13,16 @@ import java.util.List;
 @Repository
 public class UserRepository {
     private List<User> userList;
+    ObjectMapper objectMapper = new ObjectMapper();
+
 
     public UserRepository() {
-        ObjectMapper mapper = new ObjectMapper();
         try {
             InputStream inputStream = new FileInputStream(new File("./src/main/resources/UserDetails.json"));
             TypeReference<List<User>> typeReference = new TypeReference<List<User>>() {
 
             };
-            userList = mapper.readValue(inputStream, typeReference);
+            userList = objectMapper.readValue(inputStream, typeReference);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (JsonParseException e) {
@@ -67,6 +68,12 @@ public class UserRepository {
         System.out.println(user1.getId());
 
         saveUser(user);
+
+    }
+    public void deleteUserr(int id) throws IOException {
+        User user = getUSer(id);
+        userList.remove(user);
+        objectMapper.writeValue(new File("./src/main/resources/UserDetails.json"), userList);
 
     }
 }

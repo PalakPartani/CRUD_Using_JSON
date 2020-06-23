@@ -31,5 +31,8 @@ public class UserController {
         userService.update(id,user);
         System.out.println("c out ...");
     }
-
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable int id) throws IOException {
+        userService.delete(id);
+    }
 }
